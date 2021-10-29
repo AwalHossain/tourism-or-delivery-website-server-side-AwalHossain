@@ -80,6 +80,21 @@ async function run(){
  
             res.send(result)
         })
+
+        //Fot update status
+        app.put('/updateStatus/:id',async(req,res)=>{
+            console.log(req.params.id);
+            // console.log(req.body);
+            const filter = { _id: ObjectId(req.params.id)}
+            const updateDoc = {
+                $set: {
+                  status: "approved"
+                },
+              };
+              const result = await orderCollection.updateOne(filter, updateDoc);
+              console.log(result);
+            res.send(result)
+        })
     }
     finally{
         // await client.close()
