@@ -26,7 +26,7 @@ async function run(){
         const serviceCollection = database.collection('service')
         const orderCollection = database.collection('orderList')
 
-        app.post("/addUser", async (req, res) => {
+        app.post("/addServices", async (req, res) => {
             console.log("hitting the post");
             const result = await serviceCollection.insertOne(req.body);
             res.json(result);
