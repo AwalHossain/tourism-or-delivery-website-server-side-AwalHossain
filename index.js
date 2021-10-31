@@ -25,7 +25,7 @@ async function run(){
         const database = client.db('tourServices')
         const serviceCollection = database.collection('service')
         const orderCollection = database.collection('orderList')
-
+        const nearByCollection = database.collection('nearBy')
         app.post("/addServices", async (req, res) => {
             console.log("hitting the post");
             const result = await serviceCollection.insertOne(req.body);
@@ -36,6 +36,12 @@ async function run(){
             const result = await cursor.toArray()
             res.send(result)
         })
+        app.get('/nearby', async(req, res)=>{
+            const cursor = nearByCollection.find({})
+            const result = await cursor.toArray()
+            res.send(result)
+        })
+
         app.post('/placeOrder', async(req,res)=>{
             console.log('hitting the second data base');
 
